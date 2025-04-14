@@ -1,7 +1,15 @@
 package main
 
-import "github.com/giovanni-gava/gateway-migrator/cmd"
+import (
+	"fmt"
+	"os"
+
+	"github.com/giovanni-gava/gateway-migrator/internal/adapter/cli"
+)
 
 func main() {
-	cmd.Execute()
+	if err := cli.NewRootCommand().Execute(); err != nil {
+		fmt.Println("❌ Erro ao executar comando:", err)
+		os.Exit(1)
+	}
 }
